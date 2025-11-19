@@ -16,7 +16,7 @@ export default function SnakeGame() {
                 padding: "20px",
                 textAlign: "center",
                 margin: "0 auto",
-                background: "#b9b9b9ff",
+                background: "rgb(33 43 57 / 84%)",
             }}
         >
             <h2>snek!</h2>

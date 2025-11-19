@@ -1,77 +1,242 @@
-    :root {
-      --bg: #f2f2f4;
-      --surface: #fff;
-      --muted: #cfcfd2;
-      --line: #d7d7da;
-      --text: #1f2933;
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+
+:root {
+    --color-bg: #181f28;
+    --color-surface: #242c38;
+    --color-primary: #42b983;
+    --color-secondary: #2fd7be;
+    --color-accent: #ff5459;
+    --color-text: #fafafc;
+    --color-grid: #364157;
+    --color-food: #ff5459;
+    --color-snake: #42b983;
+    --color-gameover-bg: rgb(24 31 40 / 93%);
+    --font-main: 'Ubuntu Mono', consolas, monospace;
+    --font-heading: 'Doto', consolas, monospace
+}
+
+h1, h2 {
+    font-family: var(--font-heading);
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+
+
+.header,
+.footer {
+    background: var(--color-surface);
+    padding: 16px;
+    text-align: center;
+    letter-spacing: 1px
+}
+
+.header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 7%);
+}
+
+.footer {
+    font-size: 1rem;
+    color: #b7babf;
+    box-shadow: 0 -2px 8px rgb(0 0 0 / 4%);
+    margin-top: auto
+}
+
+.container {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 8px;
+    flex-wrap: wrap;
+    min-height: 600px
+}
+
+.main-area {
+    background: var(--color-surface);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgb(0 0 0 / 13%);
+    padding: 30px 32px 24px;
+    display: flex;
+    gap: 36px;
+    flex-direction: row;
+    align-items: flex-start
+}
+
+@media (width <= 900px) {
+    .main-area {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px
     }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
+    .scoreboard {
+        flex-direction: row
+    }
+}
+
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 10px;
+    min-width: 150px
+}
+
+.score-label {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    letter-spacing: 0.5px
+}
+
+.score-value {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    font-weight: bold;
+    margin-left: 5px
+}
+
+.stats {
+    width: 100%;
+    display: flex;
+    border-radius: 10px;
+    border: solid 1px;
+    background: rgb(163 163 163 / 22%);
+    margin-bottom: 20px;
+}
+
+.stats div {
+    padding: 10px;
+    width: 100%;
+    border: solid 1px rgb(255 255 255 / 12%);
+}
+
+.game-board {
+    position: relative;
+    background: var(--color-grid);
+    width: 400px;
+    height: 400px;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    box-shadow: 0 2px 16px rgb(36 44 56 / 23%);
+    overflow: hidden
+}
+
+.cell {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgb(70 80 110 / 7%)
+}
+
+.snake {
+    background: linear-gradient(90deg, var(--color-snake), #37916b 80%);
+    border-radius: 3px;
+    box-shadow: 0 2px 8px #265f4880
+}
+
+.snake-head {
+    background: linear-gradient(90deg, #74ffb3 0%, #42b983 60%);
+    border: 2px solid #3b9451bb;
+    z-index: 2
+}
+
+.food {
+    background: var(--color-food);
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff545977;
+    border: 1.5px solid #faa2ab;
+    z-index: 3
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 26px;
+    background: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.18s;
+    margin-top: 14px
+}
+
+.btn:hover {
+    background: var(--color-secondary)
+}
+
+.controls-hint {
+    margin: 8px 0 0;
+    font-size: 1.01rem;
+    color: #b8ffec;
+    letter-spacing: 0.3px
+}
+
+.gameover-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-gameover-bg);
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    animation: fade-in 0.20s
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.94)
     }
 
-    h1,
-    h2 {
-      margin: 0 0 12px;
-      font-weight: 600;
+    100% {
+        opacity: 1;
+        transform: scale(1)
     }
+}
 
-    .container {
-      padding: 24px;
-      display: flex;
-      justify-content: center;
-    }
+.gameover-title {
+    font-size: 2.15rem;
+    margin: 0 0 18px;
+    color: var(--color-accent);
+    font-weight: bolder;
+    letter-spacing: 1.2px
+}
 
-    .stats {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
+.gameover-score {
+    font-size: 1.22rem;
+    color: var(--color-primary)
+}
 
-    .stats div {
-      background: var(--surface);
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      color: var(--text);
-      min-width: 60px;
-      text-align: center;
-    }
-
-    .game-board {
-      background: transparent;
-      width: 400px;
-      height: 400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-rows: repeat(20, 1fr);
-      grid-template-columns: repeat(20, 1fr);
-      gap: 4px;
-    }
-
-    .cell {
-      background: #fff;
-      border: 1px dashed var(--muted);
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
-    /* Utility simple button style for preview */
-    .btn {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      cursor: pointer;
-    }
-
-    /* Keep modal hidden by default; layout-only preview doesn't show overlays */
-    .gameover-modal {
-      display: none;
-    }
+.gameover-btn {
+    margin-top: 28px
+}
