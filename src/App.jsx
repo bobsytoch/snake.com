@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import SnakeGame from "./components/SnakeGame";
 import "./index.css";
 
+
 export default function App() {
     return (
         <Router>
