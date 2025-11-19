@@ -1,8 +1,17 @@
+import { BOARD_SIZE } from "./constants";
+
+
 export function equalCells(a, b) {
-    return a && b && a.x === b.x && a.y === b.y;
+    return a.x === b.x && a.y === b.y;
 }
 
-export function getRandomCell() {
-    // deterministic placeholder for previews
-    return { x: 0, y: 0 };
+
+export function getRandomCell(snake) {
+    while (true) {
+        const pos = {
+            x: Math.floor(Math.random() * BOARD_SIZE),
+            y: Math.floor(Math.random() * BOARD_SIZE),
+        };
+        if (!snake.some((s) => equalCells(s, pos))) return pos;
+    }
 }
