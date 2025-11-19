@@ -1,16 +1,96 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Product Requirements Document (PRD)
+## snek! - a snake game in React
 
-Currently, two official plugins are available:
+### 1. Огляд проекту
+**Назва:** snek!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Репозиторій:** https://github.com/bobsytoch/snake.com  
 
-## React Compiler
+**Технології:** React + Vite, CSS Modules  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Мета:** Реалізувати мінімально життєздатний продукт (MVP) класичної гри Змійка для браузера.
 
-## Expanding the ESLint configuration
+***
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2. Коротке описання MVP
+
+**Основна цінність для користувача:** Можливість грати у класичну Змійку на сучасному інтерфейсі, рахунок, просте управління, Game Over та рестарт гри.
+
+**Обраний скоуп MVP:**  
+- Поле 20x20 клітин
+- Змійка зростає, якщо з’їдає яблуко (food)
+- Управління клавішами-стрілками
+- Розрахунок балів (score)
+- Відображення довжини змійки, таймеру, найкращого рахунку
+- Game Over при зіткненні із собою чи стінкою
+- Відображення Game Over екрана та кнопка Restart
+- Стилізований UI (сучасний дизайн)
+
+***
+
+### 3. Функціональні вимоги
+
+#### 3.1. Геймплей (“Game Logic”)
+- Рух змійки за напрямком (Вгору/Вниз/Вліво/Вправо)
+- Генерація їжі у випадкових, не зайнятих клітинках
+- Перевірка зіткнень (з собою, зі стінкою)
+- Додавання сегменту змійки після їдження
+- Розрахунок та збереження рахунку
+
+#### 3.2. Лейаут (“Layout”)
+- Сітка ігрового поля 20x20
+- Семантична структура: header/main/footer, scoreboard, ігрова зона, контролери
+- Відображення основної інформації (рахунок, довжина, час, best score)
+
+#### 3.3. Візуальний дизайн (“Styling”)
+- Сучасний динамічний дизайн (CSS Variables)
+- Анімована змійка та їжа
+- Модальні вікна Game Over
+- Окремі модулі стилізацій для компонування
+
+***
+
+### 4. Нефункціональні вимоги
+
+- Код повинен проходити ESLint та Stylelint перевірку
+- Кодова база має бути у публічному репозиторії з історією комітів
+
+***
+
+### 5. MVP Scope Breakdown
+
+- **Геймплей:**  
+  - Імплементація руху та життєвого циклу змійки  
+  - Обробка колізій  
+  - Логіка збирання балів
+
+- **Лейаут:**  
+  - Відображення компонентів 
+  - Функціональність restart/game over
+
+- **Візуальний дизайн:**  
+  - Анімована змійка  
+  - Game Over екран
+
+***
+
+### 6. User Stories (приклади)
+
+1. **Як гравець,** я хочу управляти змійкою стрілками, щоб збирати їжу й набирати бали.
+2. **Як гравець,** я хочу бачити свій рахунок, довжину змійки, best score та час гри.
+3. **Як гравець,** я хочу, щоб після зіткнення з собою чи стінкою гра зупинялась та з’являвся Game Over екран з кнопкою Restart.
+4. **Як користувач,** я хочу, щоб інтерфейс був зрозумілим та красивим, з однаковою адаптацією для мобільних і ПК.
+
+***
+
+### 7. Acceptance Criteria
+
+- [x] Гра запускається та працює у браузері без помилок.
+- [x] Змійка рухається по полю та реагує на стрілки.
+- [x] Їжа генерується коректно, змійка росте при їдженні.
+- [x] Game Over відображається при зіткненні, гра завершується.
+- [x] Рахунок/таймер/найкращий результат правильно відображаються.
+- [x] Стилізація та layout відповідають макету.
+- [x] Репозиторій зберігає коміти всіх учасників.
+- [x] Продукт успішно презентовано.
